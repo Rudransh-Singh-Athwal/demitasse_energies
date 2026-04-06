@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import demitasseLogo from "../assets/demitasse_energies_logo.jpeg";
 
-export default function Navbar() {
-  const [dark, setDark] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+type NavbarProps = {
+  dark: boolean;
+  onToggleDark: () => void;
+};
 
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [dark]);
+export default function Navbar({ dark, onToggleDark }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-[#020e31] border-b border-gray-200 dark:border-gray-800 px-6 py-4">
@@ -30,19 +26,13 @@ export default function Navbar() {
           <a href="#" className="hover:text-black dark:hover:text-white">
             Services
           </a>
-          <button
-            onClick={() => setDark(!dark)}
-            className="text-sm dark:text-white"
-          >
+          <button onClick={onToggleDark} className="text-sm dark:text-white">
             {dark ? "☀️" : "🌙"}
           </button>
         </div>
 
         <div className="md:hidden flex items-center gap-4">
-          <button
-            onClick={() => setDark(!dark)}
-            className="text-sm dark:text-white"
-          >
+          <button onClick={onToggleDark} className="text-sm dark:text-white">
             {dark ? "☀️" : "🌙"}
           </button>
           <button

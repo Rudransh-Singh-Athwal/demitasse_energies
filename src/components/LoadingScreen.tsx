@@ -8,7 +8,7 @@ export default function LoadingScreen() {
         <div className="mt-8 flex items-center justify-center gap-3 text-xl text-slate-500 md:text-2xl dark:text-slate-400">
           <span>Loading</span>
           <span
-            className="inline-block h-7 w-7 animate-spin rounded-full border-[3px] border-slate-400 border-t-transparent dark:border-slate-500"
+            className="inline-block h-7 w-7 animate-spin rounded-full border-[3px] border-slate-400 border-t-transparent dark:border-slate-500 dark:border-t-transparent"
             aria-hidden="true"
           />
         </div>

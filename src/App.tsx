@@ -7,6 +7,17 @@ import LoadingScreen from "./components/LoadingScreen";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [dark, setDark] = useState(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      return true;
+    }
+    if (storedTheme === "light") {
+      return false;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -16,13 +27,18 @@ export default function App() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
+
   if (isLoading) {
     return <LoadingScreen />;
   }
 
   return (
     <div className="min-h-screen bg-white dark:bg-darkBg transition-colors">
-      <Navbar />
+      <Navbar dark={dark} onToggleDark={() => setDark((current) => !current)} />
       <main>
         <Hero />
         <ContentSection />
