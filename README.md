@@ -30,7 +30,7 @@ The site includes:
 1. Clone the repository:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Rudransh-Singh-Athwal/demitasse_energies
 cd demitasse-energies
 ```
 
